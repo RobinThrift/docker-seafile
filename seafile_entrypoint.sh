@@ -120,8 +120,9 @@ EOF
 fi
 
 # Move /opt/seafile/seafile/seahub/media/avatars to /opt/seafile/seahub-data/ and symlink it back
-mkdir -p $SEAFILE_INSTALLDIR/seahub-data
-cp -r $SEAFILE_INSTALLDIR/seafile/seahub/media/avatars $SEAFILE_INSTALLDIR/seahub-data/
+if [ ! -d $SEAFILE_INSTALLDIR/seahub-data/avatars]; then
+    cp -r $SEAFILE_INSTALLDIR/seafile/seahub/media/avatars $SEAFILE_INSTALLDIR/seahub-data/
+fi
 rm -r $SEAFILE_INSTALLDIR/seafile/seahub/media/avatars
 ln -s $SEAFILE_INSTALLDIR/seahub-data/avatars $SEAFILE_INSTALLDIR/seafile/seahub/media/avatars
 
