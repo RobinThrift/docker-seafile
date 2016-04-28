@@ -133,9 +133,9 @@ ln -s $SEAFILE_INSTALLDIR/seafile $SEAFILE_INSTALLDIR/seafile-server-latest
 if [[ -n "$SEAFILE_ADMIN_EMAIL" && -n "$SEAFILE_ADMIN_PASSWORD" ]]; then
     {
         while true; do
+            sleep 5
             python -c "import ccnet; ccnet.CcnetThreadedRpcClient(ccnet.ClientPool('$SEAFILE_CONFDIR')).add_emailuser('$SEAFILE_ADMIN_EMAIL', '$SEAFILE_ADMIN_PASSWORD', 1, 1)" && break
-            ((c++)) && ((c==5)) && break
-            sleep 3
+            ((c++)) && ((c==3)) && break
         done
     } &
 fi
