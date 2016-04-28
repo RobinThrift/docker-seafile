@@ -18,9 +18,8 @@ export SEAFILE_CENTRAL_CONF_DIR="$SEAFILE_CONFDIR"
 export LD_LIBRARY_PATH=$SEAFILE_INSTALLDIR/seafile/seafile/lib:$SEAFILE_APPDIR/seafile/seafile/lib64
 export PYTHONPATH=$SEAFILE_INSTALLDIR/seafile/seafile/lib/python2.7/site-packages:$SEAFILE_INSTALLDIR/seafile/seafile/lib64/python2.7/site-packages:$SEAFILE_INSTALLDIR/seafile/seafile/lib/python2.6/site-packages:$SEAFILE_INSTALLDIR/seafile/seafile/lib64/python2.6/site-packages:$SEAFILE_INSTALLDIR/seafile/seahub:$SEAFILE_INSTALLDIR/seafile/seahub/thirdpart
 
-DB_NAMES=(ccnet-db seafile-db seahub-db)
+SEAFILE_MYSQL_DB_NAMES=(ccnet-db seafile-db seahub-db)
 : ${SEAFILE_MYSQL_USER:=seafile}
-: ${SEAFILE_MYSQL_DB_NAMES:=DB_NAMES}
 : ${SEAFILE_MYSQL_SETUP_USER:=root}
 : ${SEAFILE_MYSQL_SETUP_PASSWORD:=$MYSQL_ENV_MYSQL_ROOT_PASSWORD}
 : ${SEAFILE_INSTANCE_NAME:=Seafile}
