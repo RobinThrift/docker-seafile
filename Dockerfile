@@ -6,7 +6,7 @@ ENV SEAFILE_VERSION="5.1.1" \
     SEAFILE_CONFDIR="/opt/seafile/conf" \
     SEAFILE_CCNET_CONFDIR="/opt/seafile/ccnet" \
     SEAFILE_DATADIR="/opt/seafile/seafile-data" \
-    SEAFILE_SEAHUB_DATADIR"/opt/seafile/seahub-data" \
+    SEAFILE_SEAHUB_DATADIR="/opt/seafile/seahub-data" \
     SUPERVISORD_CONFDIR="/etc/supervisor/conf.d"
 
 RUN useradd -r seafile \
