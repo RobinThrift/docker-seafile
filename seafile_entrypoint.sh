@@ -124,10 +124,10 @@ if [ ! -d $SEAFILE_INSTALLDIR/seahub-data/avatars ]; then
     cp -r $SEAFILE_INSTALLDIR/seafile/seahub/media/avatars $SEAFILE_INSTALLDIR/seahub-data/
 fi
 rm -r $SEAFILE_INSTALLDIR/seafile/seahub/media/avatars
-ln -s $SEAFILE_INSTALLDIR/seahub-data/avatars $SEAFILE_INSTALLDIR/seafile/seahub/media/avatars
+ln -sf $SEAFILE_INSTALLDIR/seahub-data/avatars $SEAFILE_INSTALLDIR/seafile/seahub/media/avatars
 
 # Create symlink /opt/seafile/seafile-server-latest to /opt/seafile/seafile
-ln -s $SEAFILE_INSTALLDIR/seafile $SEAFILE_INSTALLDIR/seafile-server-latest
+ln -sf $SEAFILE_INSTALLDIR/seafile $SEAFILE_INSTALLDIR/seafile-server-latest
 
 # Create admin user if the respective environment variable is set
 if [[ -n "$SEAFILE_ADMIN_EMAIL" && -n "$SEAFILE_ADMIN_PASSWORD" ]]; then
