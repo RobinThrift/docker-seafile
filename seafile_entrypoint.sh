@@ -38,7 +38,6 @@ for db in ${SEAFILE_MYSQL_DB_NAMES[@]}; do
 done
 
 RESULT=$(${mysql[@]} --skip-column-names -B -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '${SEAFILE_MYSQL_DB_NAMES[2]}';")
-echo ${SEAFILE_MYSQL_DB_NAMES[2]}
 if [ "$RESULT" == "0" ]; then
     cat $SEAFILE_INSTALLDIR/seafile/seahub/sql/mysql.sql | ${mysql[@]} ${SEAFILE_MYSQL_DB_NAMES[2]}
 fi
