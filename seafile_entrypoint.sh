@@ -133,7 +133,7 @@ if [ ! -L $SEAFILE_INSTALLDIR/seafile-server-latest ]; then
 fi
 
 # Create admin user if the respective environment variable is set and the user doesn' exist yet
-RESULT=$(${mysql[@]} --skip-column-names -B -e "SELECT COUNT(*) FROM ${SEAFILE_MYSQL_DB_NAMES[0]}.EmailUser WHERE email = '${SEAFILE_ADMIN_EMAIL}';")
+RESULT=$(${mysql[@]} --skip-column-names -B -e "SELECT COUNT(*) FROM \`${SEAFILE_MYSQL_DB_NAMES[0]}\`.EmailUser WHERE email = '${SEAFILE_ADMIN_EMAIL}';")
 if [[ -n "$SEAFILE_ADMIN_EMAIL" && -n "$SEAFILE_ADMIN_PASSWORD" && "$RESULT" == "0" ]]; then
     {
         while true; do
