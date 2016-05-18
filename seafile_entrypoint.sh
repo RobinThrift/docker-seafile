@@ -15,8 +15,8 @@ fi
 export CCNET_CONF_DIR="$SEAFILE_CONFDIR"
 export SEAFILE_CONF_DIR="$SEAFILE_CONFDIR"
 export SEAFILE_CENTRAL_CONF_DIR="$SEAFILE_CONFDIR"
-export LD_LIBRARY_PATH=$SEAFILE_INSTALLDIR/seafile/seafile/lib:$SEAFILE_APPDIR/seafile/seafile/lib64
-export PYTHONPATH=$SEAFILE_INSTALLDIR/seafile/seafile/lib/python2.7/site-packages:$SEAFILE_INSTALLDIR/seafile/seafile/lib64/python2.7/site-packages:$SEAFILE_INSTALLDIR/seafile/seafile/lib/python2.6/site-packages:$SEAFILE_INSTALLDIR/seafile/seafile/lib64/python2.6/site-packages:$SEAFILE_INSTALLDIR/seafile/seahub:$SEAFILE_INSTALLDIR/seafile/seahub/thirdpart
+export LD_LIBRARY_PATH=$SEAFILE_SERVERINSTALLDIR/seafile/lib:$SEAFILE_APPDIR/seafile/seafile/lib64
+export PYTHONPATH=$SEAFILE_SERVERINSTALLDIR/seafile/lib/python2.7/site-packages:$SEAFILE_SERVERINSTALLDIR/seafile/lib64/python2.7/site-packages:$SEAFILE_SERVERINSTALLDIR/seafile/lib/python2.6/site-packages:$SEAFILE_SERVERINSTALLDIR/seafile/lib64/python2.6/site-packages:$SEAFILE_SERVERINSTALLDIR/seahub:$SEAFILE_SERVERINSTALLDIR/seahub/thirdpart
 
 SEAFILE_MYSQL_DB_NAMES=(ccnet-db seafile-db seahub-db)
 : ${SEAFILE_MYSQL_USER:=seafile}
@@ -39,12 +39,12 @@ done
 
 RESULT=$(${mysql[@]} --skip-column-names -B -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '${SEAFILE_MYSQL_DB_NAMES[2]}';")
 if [ "$RESULT" == "0" ]; then
-    cat $SEAFILE_INSTALLDIR/seafile/seahub/sql/mysql.sql | ${mysql[@]} ${SEAFILE_MYSQL_DB_NAMES[2]}
+    cat $SEAFILE_SERVERINSTALLDIR/seahub/sql/mysql.sql | ${mysql[@]} ${SEAFILE_MYSQL_DB_NAMES[2]}
 fi
 
 # Create ccnet.conf file if it doesn't exist yet
 if [[ ! -f $SEAFILE_CONFDIR/ccnet.conf || ! -f $SEAFILE_CONFDIR/mykey.peer ]]; then
-    $SEAFILE_INSTALLDIR/seafile/seafile/bin/ccnet-init -F $SEAFILE_CONFDIR --config-dir $SEAFILE_CONFDIR/tmp --name $SEAFILE_INSTANCE_NAME --host $SEAFILE_DOMAIN
+    $SEAFILE_SERVERINSTALLDIR/seafile/bin/ccnet-init -F $SEAFILE_CONFDIR --config-dir $SEAFILE_CONFDIR/tmp --name $SEAFILE_INSTANCE_NAME --host $SEAFILE_DOMAIN
 
     cat <<- EOF >> $SEAFILE_CONFDIR/ccnet.conf
 
@@ -71,7 +71,7 @@ fi
 
 # Create seafile.conf file if it doesn't exist yet
 if [ ! -f $SEAFILE_CONFDIR/seafile.conf ]; then
-    $SEAFILE_INSTALLDIR/seafile/seafile/bin/seaf-server-init -F $SEAFILE_CONFDIR --seafile-dir $SEAFILE_DATADIR --fileserver-port $SEAFILE_FILESERVER_PORT
+    $SEAFILE_SERVERINSTALLDIR/seafile/bin/seaf-server-init -F $SEAFILE_CONFDIR --seafile-dir $SEAFILE_DATADIR --fileserver-port $SEAFILE_FILESERVER_PORT
 
     cat <<- EOF >> $SEAFILE_CONFDIR/seafile.conf
 
@@ -120,16 +120,16 @@ fi
 
 # Move /opt/seafile/seafile/seahub/media/avatars to /opt/seafile/seahub-data/ and symlink it back
 if [ ! -d $SEAFILE_INSTALLDIR/seahub-data/avatars ]; then
-    cp -r $SEAFILE_INSTALLDIR/seafile/seahub/media/avatars $SEAFILE_INSTALLDIR/seahub-data/
+    cp -r $SEAFILE_SERVERINSTALLDIR/seahub/media/avatars $SEAFILE_INSTALLDIR/seahub-data/
 fi
-if [ ! -L $SEAFILE_INSTALLDIR/seafile/seahub/media/avatars ]; then
-	rm -r $SEAFILE_INSTALLDIR/seafile/seahub/media/avatars
-	ln -sfn $SEAFILE_INSTALLDIR/seahub-data/avatars $SEAFILE_INSTALLDIR/seafile/seahub/media/avatars
+if [ ! -L $SEAFILE_SERVERINSTALLDIR/seahub/media/avatars ]; then
+	rm -r $SEAFILE_SERVERINSTALLDIR/seahub/media/avatars
+	ln -sfn $SEAFILE_INSTALLDIR/seahub-data/avatars $SEAFILE_SERVERINSTALLDIR/seahub/media/avatars
 fi
 
 # Create symlink /opt/seafile/seafile-server-latest to /opt/seafile/seafile
 if [ ! -L $SEAFILE_INSTALLDIR/seafile-server-latest ]; then
-	ln -sfn $SEAFILE_INSTALLDIR/seafile $SEAFILE_INSTALLDIR/seafile-server-latest
+	ln -sfn $SEAFILE_SERVERINSTALLDIR $SEAFILE_INSTALLDIR/seafile-server-latest
 fi
 
 # Create admin user if the respective environment variable is set and the user doesn' exist yet
