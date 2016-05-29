@@ -1,0 +1,8 @@
+[05/29/16 15:53:36] ../common/session.c(132): using config file /opt/seafile/conf/ccnet.conf
+[05/29/16 15:53:36] ../common/session.c(69): Can't load rsa private key from /opt/seafile/conf/mykey.peer
+[05/29/16 15:53:37] ../common/session.c(132): using config file /opt/seafile/conf/ccnet.conf
+[05/29/16 15:53:37] ../common/session.c(69): Can't load rsa private key from /opt/seafile/conf/mykey.peer
+[05/29/16 15:53:39] ../common/session.c(132): using config file /opt/seafile/conf/ccnet.conf
+[05/29/16 15:53:39] ../common/session.c(69): Can't load rsa private key from /opt/seafile/conf/mykey.peer
+[05/29/16 15:53:42] ../common/session.c(132): using config file /opt/seafile/conf/ccnet.conf
+[05/29/16 15:53:42] ../common/session.c(69): Can't load rsa private key from /opt/seafile/conf/mykey.peer
