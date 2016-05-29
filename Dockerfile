@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER Philipp Holler <philipp.holler93@gmail.com>
 
-ENV SEAFILE_VERSION="5.1.1" \
+ENV SEAFILE_VERSION="5.1.2" \
     SEAFILE_INSTALLDIR="/opt/seafile" \
     SEAFILE_SERVERINSTALLDIR="/opt/seafile/seafile-server" \
     SEAFILE_CONFDIR="/opt/seafile/conf" \
